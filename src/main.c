@@ -6,6 +6,7 @@
 
 #include "../includes/consolecolors.h"
 #include "../includes/supremeio.h"
+#include "../includes/cypher.h"
 
 // CONSEGNA:
 // 1) Inserimento delle informazioni
@@ -18,6 +19,9 @@
 // Nome, Cognome, Codice Fiscale, Username, Password
 
 int main(void) {
+    // Carica gli elementi per la cifratura
+    load_cypher();
+
 
     return 0;
 }
