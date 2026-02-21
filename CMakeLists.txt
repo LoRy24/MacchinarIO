@@ -7,4 +7,9 @@ add_executable(MacchinarIO src/main.c
         includes/supremeio.h
         src/supremeio.c
         includes/consolecolors.h
-        includes/account.h)
+        includes/account.h
+        includes/chiper.h
+        src/chiper.c
+        src/data.c
+        includes/data.h
+        includes/lists.h)
