@@ -21,24 +21,14 @@ typedef struct list_s {
 
 // Funzioni di gestione dei nodi
 
-inline ListNode* create_list_node(void* value) {
-    ListNode* node = malloc(sizeof(ListNode));
-    node->value = value;
-    node->next = nullptr;
-    return node;
-}
-
-inline void destroy_list_node(ListNode* node) {
-    free(node);
-}
+ListNode* create_list_node(void* value);
+void destroy_list_node(ListNode* node);
 
 // Funzione per la gestione della lista
 
-inline List create_list() {
-    List list;
-    list.size = 0;
-    list.head = nullptr;
-    return list;
-}
+List create_list();
+void clear_list(List *list);
+void destroy_list(List *list);
+void append_list(List *list, void* value);
 
 #endif //MACCHINARIO_LISTS_H
