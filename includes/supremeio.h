@@ -9,7 +9,7 @@
 
 #ifdef _WIN32
     #include <conio.h>
-#elif defined(__APPLE__)
+#elif
     #include <termios.h>
     #include <unistd.h>
 #endif
@@ -17,5 +17,7 @@
 // Funzioni
 
 int get_pressed_key_cp();
+void clear_screen_cp();
+char* input_password_cp(int maxSize, bool printCensor, char censorCharacter);
 
 #endif //MACCHINARIO_SUPREMEIO_H
