@@ -10,8 +10,11 @@ typedef struct account_s {
     char username[17];
     char name[65];
     char surname[65];
+    char fiscal_code[17];
     char email[129];
-    char password[257];
+    char password[129];
 } UserAccount;
+
+UserAccount* create_account(int id, char* username, char* name, char* surname, char* fiscal_code, char* email, const char* password);
 
 #endif //MACCHINARIO_ACCOUNT_H
