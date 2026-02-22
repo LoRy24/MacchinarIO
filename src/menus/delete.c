@@ -44,7 +44,7 @@ void launch_account_deletion_menu() {
         // Seleziona account da eliminare
         int id = 0;
         printf("\nInserisci l'ID dell'account da eliminare o un numero negativo per uscire -> ");
-        while (!scanf("%d", &id) || (!exists_account(id) && id >= 0)) {
+        while (!scanf("%d", &id) || (!exists_account(id) && id >= 0)) { // NOLINT(*-err34-c)
             fflush(stdin);
             printf("ID non valido! Riprova -> ");
         }

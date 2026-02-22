@@ -5,8 +5,6 @@
 #ifndef MACCHINARIO_LISTS_H
 #define MACCHINARIO_LISTS_H
 
-#include <stdlib.h>
-
 // Strutture
 
 typedef struct list_node_s {
