@@ -15,6 +15,6 @@ typedef struct account_s {
     char password[129];
 } UserAccount;
 
-UserAccount* create_account(int id, char* username, char* name, char* surname, char* fiscal_code, char* email, const char* password);
+UserAccount* create_account(char* username, char* name, char* surname, char* fiscal_code, char* email, const char* password);
 
 #endif //MACCHINARIO_ACCOUNT_H
