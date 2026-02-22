@@ -17,4 +17,9 @@ add_executable(MacchinarIO src/program.c
         src/menus/main.c
         src/lists.c
         src/menus/commons.c
-        src/accounts.c)
+        src/accounts.c
+        src/storage.c
+        includes/storage.h
+        src/menus/accounts_view.c
+        src/menus/register.c
+        src/menus/delete.c)
