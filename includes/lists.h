@@ -26,9 +26,13 @@ void destroy_list_node(ListNode* node);
 
 // Funzione per la gestione della lista
 
-List create_list();
-void clear_list(List *list);
-void destroy_list(List *list);
-void append_list(List *list, void* value);
+List* create_list();
+void clear_list(List* list);
+void destroy_list(List* list);
+void append_list(List* list, void* value);
+
+// Gestione specifica per liste di Account
+
+void remove_from_list_by_account_id(List* list, int id);
 
 #endif //MACCHINARIO_LISTS_H

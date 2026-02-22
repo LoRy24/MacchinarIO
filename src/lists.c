@@ -4,6 +4,8 @@
 
 #include "../includes/lists.h"
 
+#include "../includes/accounts.h"
+
 // Funzioni di gestione dei nodi
 
 ListNode* create_list_node(void* value) {
@@ -19,14 +21,14 @@ void destroy_list_node(ListNode* node) {
 
 // Funzione per la gestione della lista
 
-List create_list() {
-    List list;
-    list.size = 0;
-    list.head = nullptr;
+List* create_list() {
+    List* list = malloc(sizeof(List));
+    list->size = 0;
+    list->head = nullptr;
     return list;
 }
 
-void clear_list(List *list) {
+void clear_list(List* list) {
     ListNode* node = list->head;
     while (node != nullptr) {
         ListNode* sel = node;
@@ -37,7 +39,7 @@ void clear_list(List *list) {
     list->size = 0;
 }
 
-void destroy_list(List *list) {
+void destroy_list(List* list) {
     // Elimina gli elementi della lista
     clear_list(list);
 
@@ -45,7 +47,7 @@ void destroy_list(List *list) {
     free(list);
 }
 
-void append_list(List *list, void* value) {
+void append_list(List* list, void* value) {
     // Crea il nodo
     ListNode* node = create_list_node(value);
 
@@ -59,5 +61,30 @@ void append_list(List *list, void* value) {
             tail = tail->next;
         }
         tail->next = node;
+    }
+
+    // Aggiungi l'elemento
+    list->size++;
+}
+
+// Specifica per liste di account
+
+void remove_from_list_by_account_id(List* list, const int id) {
+    if (((UserAccount*) list->head->value)->id == id) {
+        ListNode* node = list->head;
+        list->head = list->head->next;
+        destroy_list_node(node);
+        list->size--;
+    }
+    else {
+        ListNode* node = list->head;
+        while (node->next != nullptr) {
+            if (((UserAccount*) node->next)->id == id) {
+                node->next = node->next->next;
+                destroy_list_node(node->next);
+                list->size--;
+                break;
+            }
+        }
     }
 }
