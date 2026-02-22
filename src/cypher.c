@@ -4,13 +4,11 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <dirent.h>
-#include <errno.h>
-
-#include "../includes/cypher.h"
-
 #include <stdio.h>
 #include <time.h>
+
+#include "../includes/cypher.h"
+#include "../includes/storage.h"
 
 // Valori globali
 char CYPHER_KEY = -1;
@@ -24,14 +22,7 @@ char generate_key() {
 
 void load_cypher() {
     // Creazione e controllo esistenza della cartella data
-    DIR* dir = opendir("data");
-    if (dir) {
-        closedir(dir);
-    }
-    else if (ENOENT == errno) {
-        // Crea la cartella
-        mkdir("data");
-    }
+    fix_data_folder();
 
     // Vedi se esiste il file per la chiave
     FILE *key_file = fopen("data/key.meow", "r");
@@ -70,7 +61,7 @@ char* decode_from_cesar(const char* encoded) {
     // Decodifica
     char* decoded = malloc(sizeof(char) * (strlen(encoded) + 1));
     for (int i = 0; i < strlen(encoded); i++) {
-        decoded[i] = (char)(((int) encoded[i] + (int) CYPHER_KEY) % 256);
+        decoded[i] = (char)(((int) encoded[i] - (int) CYPHER_KEY) % 256);
     }
     decoded[strlen(encoded)] = '\0';
 
