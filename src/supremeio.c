@@ -5,6 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+    #include <conio.h>
+#elif
+    #include <termios.h>
+    #include <unistd.h>
+#endif
+
 #include "../includes/supremeio.h"
 
 int get_pressed_key_cp() {
