@@ -7,20 +7,17 @@
 #include "../includes/consolecolors.h"
 #include "../includes/supremeio.h"
 #include "../includes/cypher.h"
+#include "../includes/data.h"
 #include "../includes/menus.h"
-
-// CONSEGNA:
-// 1) Inserimento delle informazioni
-// OK 2) Scelta della struttura dati
-// OK 3) Crittografia delle password con cesare
-// 4) Registrazione
-// 5) Check della validità dei dati inseriti
 
 void exit_routine();
 
 int main(void) {
     // Carica gli elementi per la cifratura
     load_cypher();
+
+    // Carica i dati del programma
+    load_data();
 
     // Avvia menu principale
     launch_main_menu();
