@@ -35,5 +35,5 @@ jobs:
         with:
           name: MacchinarIO-${{ matrix.os }}
           path: |
-            output/MacchinarIO*
+            output/MacchinarIO
             output/Release/MacchinarIO.exe
