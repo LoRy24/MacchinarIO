@@ -23,7 +23,7 @@ jobs:
         run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23
 
       - name: Build
-        run: cmake --build build --config Release
+        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23 -DCMAKE_CXX_STANDARD=23
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
