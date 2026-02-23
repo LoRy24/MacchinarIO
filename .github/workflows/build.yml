@@ -24,6 +24,7 @@ jobs:
         with:
           source-dir: .
           build-dir: output
+          build-args: -DCMAKE_C_STANDARD=23 -DCMAKE_C_STANDARD_REQUIRED=ON -DCMAKE_C_EXTENSIONS=OFF
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
