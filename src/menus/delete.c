@@ -24,14 +24,14 @@ void print_menu_adm() {
 
     // Scrivi la lista degli account con ID - Nome e Cognome - Username
     const ListNode* node = people_list->head;
-    while (node != nullptr) {
+    while (node != NULL) {
         print_account_line(node->value);
         node = node->next;
     }
 }
 
 void launch_account_deletion_menu() {
-    while (true) {
+    while (1) {
         // Stampa a schermo il menu
         print_menu_adm();
 

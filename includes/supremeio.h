@@ -5,12 +5,10 @@
 #ifndef MACCHINARIO_SUPREMEIO_H
 #define MACCHINARIO_SUPREMEIO_H
 
-#include <stdbool.h>
-
 // Funzioni
 
 int get_pressed_key_cp();
 void clear_screen_cp();
-char* input_password_cp(int maxSize, bool printCensor, char censorCharacter);
+char* input_password_cp(int maxSize, int printCensor, char censorCharacter);
 
 #endif //MACCHINARIO_SUPREMEIO_H

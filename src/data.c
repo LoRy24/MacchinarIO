@@ -45,7 +45,7 @@ void load_data() {
     }
 }
 
-bool save_data() {
+int save_data() {
     FILE* data_file = fopen("data/data.meow", "w");
     if (data_file) {
         // Scrivi l'ultimo ID generato
@@ -56,17 +56,17 @@ bool save_data() {
 
         // Scrivi ogni elemento della lista
         const ListNode* node = people_list->head;
-        while (node != nullptr) {
+        while (node != NULL) {
             const UserAccount* account = node->value;
             fwrite(account, sizeof(UserAccount), 1, data_file);
             node = node->next;
         }
 
         fclose(data_file);
-        return true;
+        return 1;
     }
 
-    return false;
+    return 0;
 }
 
 void add_account(UserAccount* account) {
@@ -89,11 +89,11 @@ int generate_id() {
     return id_counter;
 }
 
-bool exists_account(const int id) {
+int exists_account(const int id) {
     const ListNode* node = people_list->head;
-    while (node != nullptr) {
-        if (((UserAccount*)(node->value))->id == id) return true;
+    while (node != NULL) {
+        if (((UserAccount*)(node->value))->id == id) return 1;
         node = node->next;
     }
-    return false;
+    return 0;
 }

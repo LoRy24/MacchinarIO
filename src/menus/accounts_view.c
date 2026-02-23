@@ -34,7 +34,7 @@ void print_menu_alm() {
     }
     else {
         const ListNode* node = people_list->head;
-        while (node != nullptr) {
+        while (node != NULL) {
             UserAccount* account = node->value;
             print_account_card(account);
             node = node->next;

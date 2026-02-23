@@ -25,7 +25,7 @@ jobs:
           source-dir: .
           build-dir: output
           options: |
-            -DCMAKE_C_STANDARD=23
+            -DCMAKE_C_STANDARD=17
             -DCMAKE_C_STANDARD_REQUIRED=ON
             -DCMAKE_C_EXTENSIONS=OFF
 

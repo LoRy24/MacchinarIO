@@ -42,16 +42,18 @@ void clear_screen_cp() {
 #endif
 }
 
-char* input_password_cp(const int maxSize, const bool printCensor, const char censorCharacter) {
-    if (maxSize <= 0) return nullptr;
+char* input_password_cp(const int maxSize, const int printCensor, const char censorCharacter) {
+    if (maxSize <= 0) return NULL;
 
     // Crea il buffer
     char* buffer = malloc((maxSize + 1) * sizeof(char));
-    if (!buffer) return nullptr;
+    if (!buffer) return NULL;
 
     int index = 0;
 
+#ifndef _WIN32
     flush_stdin_cp();
+#endif
 
     while (1) {
         const int ch = get_pressed_key_cp();
@@ -66,7 +68,7 @@ char* input_password_cp(const int maxSize, const bool printCensor, const char ce
         if (ch == 8 || ch == 127) {
             if (index > 0) {
                 index--;
-                if (printCensor) {
+                if (printCensor == 1) {
                     printf("\b \b");
                     fflush(stdout);
                 }
@@ -77,7 +79,7 @@ char* input_password_cp(const int maxSize, const bool printCensor, const char ce
             if (index < maxSize) {
                 buffer[index++] = (char)ch;
 
-                if (printCensor) {
+                if (printCensor == 1) {
                     printf("%c", censorCharacter);
                     fflush(stdout);
                 }

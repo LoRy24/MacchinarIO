@@ -12,11 +12,11 @@ extern List* people_list;
 extern int id_counter;
 
 void load_data();
-bool save_data();
+int save_data();
 void add_account(UserAccount* account);
 void remove_account(int id);
 int get_total_accounts();
 int generate_id();
-bool exists_account(int id);
+int exists_account(int id);
 
 #endif //MACCHINARIO_DATA_H

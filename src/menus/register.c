@@ -63,7 +63,7 @@ void launch_account_registration_menu() {
 
     // Chiedi la password
     printf("Inserisci la password -> ");
-    char* password = input_password_cp(128, true, '*');
+    char* password = input_password_cp(128, 1, '*');
     sprintf(account->password, "%s", encode_with_cesar(password));
     free(password);
     fflush(stdin);

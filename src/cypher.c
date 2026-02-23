@@ -16,7 +16,7 @@ char CYPHER_KEY = -1;
 // Gestione delle chiavi di codifica
 
 char generate_key() {
-    srand(time(nullptr)); // NOLINT(*-msc51-cpp)
+    srand(time(NULL)); // NOLINT(*-msc51-cpp)
     return (char) (rand() % 255 + 1); // NOLINT(*-msc50-cpp)
 }
 
