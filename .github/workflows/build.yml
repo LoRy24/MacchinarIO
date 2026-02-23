@@ -28,6 +28,7 @@ jobs:
             -DCMAKE_C_STANDARD=17
             -DCMAKE_C_STANDARD_REQUIRED=ON
             -DCMAKE_C_EXTENSIONS=OFF
+          build-args: --config Release
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -35,3 +36,4 @@ jobs:
           name: MacchinarIO-${{ matrix.os }}
           path: |
             output/MacchinarIO*
+            output/Release/MacchinarIO.exe
