@@ -19,12 +19,11 @@ int get_pressed_key_cp() {
     return _getch();
 #else
     struct termios oldt, newt;
-    int ch;
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
     newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    ch = getchar();
+    const int ch = getchar();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return ch;
 #endif
@@ -54,9 +53,8 @@ char* input_password_cp(const int maxSize, const bool printCensor, const char ce
 
     flush_stdin_cp();
 
-    int ch;
     while (1) {
-        ch = get_pressed_key_cp();
+        const int ch = get_pressed_key_cp();
 
 #ifdef _WIN32
         if (ch == 13) break;     // Enter
