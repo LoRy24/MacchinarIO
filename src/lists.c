@@ -4,6 +4,8 @@
 
 #include "../includes/lists.h"
 
+#include <stdlib.h>
+
 #include "../includes/accounts.h"
 
 // Funzioni di gestione dei nodi

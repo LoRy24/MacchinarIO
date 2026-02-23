@@ -7,7 +7,7 @@
 
 #ifdef _WIN32
     #include <conio.h>
-#elif
+#else
     #include <termios.h>
     #include <unistd.h>
 #endif
@@ -18,15 +18,21 @@ int get_pressed_key_cp() {
 #ifdef _WIN32
     return _getch();
 #else
-    struct termios oldSettings, newSettings;
-    tcgetattr(STDIN_FILENO, &oldSettings);
-    newSettings = oldSettings;
-    newSettings.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newSettings);
-    const int inputCharacter = getchar();
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldSettings);
-    return inputCharacter;
+    struct termios oldt, newt;
+    int ch;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return ch;
 #endif
+}
+
+void flush_stdin_cp() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 void clear_screen_cp() {
@@ -46,14 +52,16 @@ char* input_password_cp(const int maxSize, const bool printCensor, const char ce
 
     int index = 0;
 
-    while (1) {
-        const int ch = get_pressed_key_cp();
+    flush_stdin_cp();
 
-        // Invio
+    int ch;
+    while (1) {
+        ch = get_pressed_key_cp();
+
 #ifdef _WIN32
-        if (ch == 13) break;
+        if (ch == 13) break;     // Enter
 #else
-        if (ch == '\n') break;
+        if (ch == '\n') break;   // Enter su macOS/Linux
 #endif
 
         // Backspace
@@ -66,7 +74,7 @@ char* input_password_cp(const int maxSize, const bool printCensor, const char ce
                 }
             }
         }
-        // Carattere
+        // Carattere stampabile
         else if (ch >= 32 && ch <= 126) {
             if (index < maxSize) {
                 buffer[index++] = (char)ch;
