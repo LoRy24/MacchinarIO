@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23 -DCMAKE_CXX_STANDARD=23
 
+      - name: List build folder (Windows)
+        run: dir build /s
+
       - name: Copy binary to artifacts folder
         run: |
           mkdir -p artifacts
