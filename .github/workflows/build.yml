@@ -25,10 +25,17 @@ jobs:
       - name: Build
         run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23 -DCMAKE_CXX_STANDARD=23
 
+      - name: Copy binary to artifacts folder
+        run: |
+          mkdir -p artifacts
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            copy build\Release\MacchinarIO.exe artifacts\
+          else
+            cp build/MacchinarIO artifacts/
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: MacchinarIO-${{ matrix.os }}
-          path: |
-            build/Release/MacchinarIO*
-            build/Release/MacchinarIO.exe
+          path: artifacts/
