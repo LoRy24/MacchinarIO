@@ -5,6 +5,8 @@
 #ifndef MACCHINARIO_SUPREMEIO_H
 #define MACCHINARIO_SUPREMEIO_H
 
+#include <stdbool.h>
+
 // Funzioni
 
 int get_pressed_key_cp();
