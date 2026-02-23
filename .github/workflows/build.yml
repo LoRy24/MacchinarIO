@@ -19,19 +19,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Configure CMake
-        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23
-
-      - name: Build
-        run: cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_STANDARD=23 -DCMAKE_CXX_STANDARD=23
-
-      - name: List build folder (Windows)
-        run: dir build /s
+      - name: Build Project
+        uses: threeal/cmake-action@v2.1.0
+        with:
+          source-dir: .
+          build-dir: output
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: MacchinarIO-${{ matrix.os }}
           path: |
-            build/MacchinarIO*
-            build/Release/MacchinarIO*
+            output/MacchinarIO*
